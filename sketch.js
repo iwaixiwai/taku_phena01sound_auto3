@@ -48,7 +48,10 @@ let wheel_ind = 200;  // ホイール内側直径
 let ball_d = 120;  // さわるボール直径
 let ball_cx = 165;  // さわるボールのホイール中心からの距離
 
-let txt_height = 1000;
+let txt_cy1 = 900;
+let txt_cy2 = 1100;
+let txt_cy3 = 1200;
+
 let bY1, bY2; // ボタンのY座標
 
 let screen_scale;
@@ -422,18 +425,18 @@ function draw()
     fill(0);
     textAlign(CENTER);
     textSize(num*0.8);
-    translate(pX, txt_height*screen_scale + bY1);
-    text("Phenakistiscopes", 0, 0);
-    translate(0, 50*screen_scale);
-    text("Taku Furukawa 2003", 0, 0);
+//    translate(pX, txt_cy1*screen_scale + bY1);
+    text("Phenakistiscopes", pX, txt_cy2*screen_scale + bY1);
+//    translate(0, 50*screen_scale);
+    text("Taku Furukawa 2003", pX, txt_cy3*screen_scale + bY1);
     pop();
       
     push();
     fill(0);
     textAlign(CENTER);
     textSize(num*1.8);
-    translate(pX, wh/2*1.2);
-    text("TAP to start", 0, 0);
+//    translate(pX, wh/2*1.2);
+    text("TAP to start", pX, txt_cy1*screen_scale + bY1);
     pop();
   }
 }
@@ -487,10 +490,18 @@ function windowResized()
   if(wh > ww*1.5) // 縦長画面
   {
     screen_scale = ww/screen_w;
+    bY1 = (wh-ww*1.5)/2;
+    bY2 = (wh-ww*1.5)/2;
   }
   else  // 横長画面
   {
     screen_scale = wh/screen_h;
+    bY1 = 0;
+    bY2 = 0;
   }
+
+  // ボタンの大きさなど再設定
+  
+  num = 50 * screen_scale;
 
 }
